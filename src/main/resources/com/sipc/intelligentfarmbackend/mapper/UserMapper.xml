@@ -2,19 +2,24 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="com.sipc.intelligentfarmbackend.mapper.UserMapper">
 
+<!--    分页查询-->
     <select id="list" resultType="com.sipc.intelligentfarmbackend.pojo.User">
         select u.*, r.role_name
-        from user u left join role r on u.role_id = r.id
+        from user u
+        left join role r
+        on u.role_id = r.id
         <where>
-            <if test="name != null">
-                and u.name = #{name}
+            <if test="name != null and name != ''">
+                and u.name like concat('%', #{name}, '%')
+            </if>
+            <if test="userPhone != null and userPhone != ''">
+                andu.user_phone like concat('%', #{userPhone}, '%)
             </if>
         </where>
-        order by u.id desc
     </select>
 
-
-
 </mapper>
+
