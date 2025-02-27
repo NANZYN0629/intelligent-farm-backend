@@ -3,6 +3,29 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sipc.intelligentfarmbackend.mapper.RoleMapper">
+    
+<!--    查询所有角色-->
+    <select id="findAll" resultType="com.sipc.intelligentfarmbackend.pojo.Role">
+        select * from role
+    </select>
+    
+<!--    根据id删除角色-->
+    <delete id="deleteById" >
+        delete from role where id = #{id}
+    </delete>
 
+<!--    添加角色-->
+    <insert id="insert">
+        insert into role(id, role_name) values(#{id}, #{roleName})
+    </insert>
 
+<!--    根据id查询角色 (用于修改角色)-->
+    <select id="getById" resultType="com.sipc.intelligentfarmbackend.pojo.Role">
+        select * from role where id = #{id}
+    </select>
+
+<!--    修改角色-->
+    <update id="update">
+        update role set role_name = #{roleName} where id = #{id}
+    </update>
 </mapper>

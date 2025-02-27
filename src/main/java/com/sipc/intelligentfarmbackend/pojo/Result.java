@@ -1,6 +1,8 @@
 package com.sipc.intelligentfarmbackend.pojo;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
@@ -8,6 +10,8 @@ import java.io.Serializable;
  * 后端统一返回结果
  */
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Result {
 
     private Integer code; //编码：1成功，0为失败
