@@ -29,12 +29,12 @@ public class MqttPahoTest {
 
         // 创建MqttMessage，并设置消息内容
         MqttMessage mqttMessage = new MqttMessage();
-        mqttMessage.setQos(2); // 设置QoS级别
+        mqttMessage.setQos(0); // 设置QoS级别
         mqttMessage.setRetained(true); // 设置保留消息
-        mqttMessage.setPayload("Hello, MQTT!".getBytes()); // 设置消息内容
+        mqttMessage.setPayload("Hello, 金威".getBytes()); // 设置消息内容
 
         // 发布消息
-        mqttClient.publish("java/a", mqttMessage);
+        mqttClient.publish("/mysmartagriculture/pub", mqttMessage);
 
         // 关闭连接
         mqttClient.disconnect();
@@ -89,7 +89,7 @@ public class MqttPahoTest {
         System.out.println("建立连接成功");
 
         // 订阅主题
-        mqttClient.subscribe("java/a", 2);
+        mqttClient.subscribe("/mysmartagriculture/pub", 0);
         System.out.println("订阅成功");
 
         // 阻塞线程，防止程序退出

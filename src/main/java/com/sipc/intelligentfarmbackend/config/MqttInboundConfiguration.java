@@ -55,7 +55,7 @@ public class MqttInboundConfiguration {
         mqttPahoMessageDrivenChannelAdapter.setQos(1);  // 设置QOS
         mqttPahoMessageDrivenChannelAdapter.setConverter(new DefaultPahoMessageConverter());    // 设置消息转换器
         mqttPahoMessageDrivenChannelAdapter.setOutputChannel(messageInboundChannel());  // 设置消息通道
-        return mqttPahoMessageDrivenChannelAdapter;
+        return mqttPahoMessageDrivenChannelAdapter; // 返回适配器
     }
 
 
@@ -63,7 +63,7 @@ public class MqttInboundConfiguration {
     @Bean
     @ServiceActivator(inputChannel = "messageInboundChannel")
     public MessageHandler messageHandler() {
-        return receiverMessageHandler;
+        return receiverMessageHandler;  // 返回消息处理器
     }
 
 

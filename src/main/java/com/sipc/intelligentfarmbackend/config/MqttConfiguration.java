@@ -18,13 +18,16 @@ public class MqttConfiguration {
 
     @Bean
     public MqttPahoClientFactory mqttClientFactory() {
+        // 创建 MQTT 客户端工厂
         DefaultMqttPahoClientFactory mqttPahoClientFactory = new DefaultMqttPahoClientFactory();
+        // 设置 MQTT 连接选项
         MqttConnectOptions options = new MqttConnectOptions();
-        options.setCleanSession(true);
-        options.setUserName(mqttConfigurationProperties.getUsername());
-        options.setPassword(mqttConfigurationProperties.getPassword().toCharArray());
-        options.setServerURIs(new String[] {mqttConfigurationProperties.getUrl() } );
-        mqttPahoClientFactory.setConnectionOptions(options);
-        return mqttPahoClientFactory;
+        // 设置 MQTT 连接选项
+        options.setCleanSession(true); // 设置是否清除会话
+        options.setUserName(mqttConfigurationProperties.getUsername()); // 设置用户名
+        options.setPassword(mqttConfigurationProperties.getPassword().toCharArray());   // 设置密码
+        options.setServerURIs(new String[] {mqttConfigurationProperties.getUrl() } );   // 设置服务器地址
+        mqttPahoClientFactory.setConnectionOptions(options); // 设置 MQTT 连接选项
+        return mqttPahoClientFactory;  // 返回 MQTT 客户端工厂
     }
 }
