@@ -31,10 +31,21 @@
     </properties>
     <dependencies>
 
+<!--        springWeb依赖-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+
+<!--        spring-boot-starter-jdbc依赖-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
+        </dependency>
+
+
+
+
 
 <!--        spring-boot 开发起步器依赖-->
         <dependency>
