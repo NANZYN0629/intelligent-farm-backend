@@ -11,4 +11,14 @@
     </select>
 
 
+    <insert id="insertEnvironment" parameterType="com.sipc.intelligentfarmbackend.pojo.Environment">
+        INSERT INTO environment(
+        field_id, nitrogen, potassium, moisture,
+        light, phosphorus, temperature, ph, co2
+        ) VALUES (
+        #{fieldId}, #{nitrogen}, #{potassium}, #{moisture},
+        #{light}, #{phosphorus}, #{temperature}, #{ph}, #{co2}
+        )
+    </insert>
+
 </mapper>

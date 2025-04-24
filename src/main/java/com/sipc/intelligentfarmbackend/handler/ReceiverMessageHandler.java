@@ -1,61 +1,61 @@
 package com.sipc.intelligentfarmbackend.handler;
 
+import com.alibaba.fastjson.JSON;
+import com.sipc.intelligentfarmbackend.mapper.EnvironmentMapper;
+import com.sipc.intelligentfarmbackend.pojo.Environment;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.MessageHandler;
 import org.springframework.messaging.MessageHeaders;
 import org.springframework.messaging.MessagingException;
 import org.springframework.stereotype.Component;
 
-@Component
-public class ReceiverMessageHandler implements MessageHandler {
+import java.time.LocalDateTime;
 
-
-    @Override
-    public void handleMessage(Message<?> message) throws MessagingException {
-
-        Object payload = message.getPayload();
-        System.out.println(payload);
-        System.out.println(message);
-
-        MessageHeaders headers = message.getHeaders();
-        String topicName = headers.get("mqtt_receivedTopic").toString();
-        System.out.println("topicName:" + topicName);
-
-
-    }
-
-}
-
-
-// ReceiverMessageHandler.java 修改后
 //@Component
 //public class ReceiverMessageHandler implements MessageHandler {
 //
-//    @Autowired
-//    private MqttMessageMapper mqttMessageMapper;
 //
 //    @Override
 //    public void handleMessage(Message<?> message) throws MessagingException {
-//        try {
-//            // 解析消息
-//            String payload = message.getPayload().toString();
-//            MessageHeaders headers = message.getHeaders();
-//            String topic = headers.get("mqtt_receivedTopic", String.class);
 //
-//            // 构建存储对象
-//            MqttMessage msg = new MqttMessage();
-//            msg.setTopic(topic);
-//            msg.setPayload(payload);
-//            msg.setCreateTime(LocalDateTime.now());
+//        Object payload = message.getPayload();
+//        System.out.println(payload);
+//        System.out.println(message);
 //
-//            // 存储到数据库
-//            int result = mqttMessageMapper.insertMessage(msg);
-//            System.out.println("存储结果：" + (result > 0 ? "成功" : "失败"));
+//        MessageHeaders headers = message.getHeaders();
+//        String topicName = headers.get("mqtt_receivedTopic").toString();
+//        System.out.println("topicName:" + topicName);
 //
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            throw new MessagingException("消息处理失败", e);
-//        }
+//
 //    }
+//
 //}
 
+@Slf4j
+@Component
+public class ReceiverMessageHandler implements MessageHandler {
+
+    @Autowired
+    private EnvironmentMapper environmentMapper;
+
+    @Override
+    public void handleMessage(Message<?> message) {
+        try {
+            String payload = message.getPayload().toString();
+            MessageHeaders headers = message.getHeaders();
+            String topic = headers.get("mqtt_receivedTopic", String.class);
+
+            Environment envData = JSON.parseObject(payload, Environment.class);
+
+            int affectedRows = environmentMapper.insertEnvironment(envData);
+            log.info("环境数据入库{} | 主题:{} | 影响行数:{}",
+                    affectedRows > 0 ? "成功" : "失败", topic, affectedRows);
+
+        } catch (Exception e) {
+            log.error("消息处理异常: ", e);
+            throw new MessagingException("数据处理失败", e);
+        }
+    }
+}
