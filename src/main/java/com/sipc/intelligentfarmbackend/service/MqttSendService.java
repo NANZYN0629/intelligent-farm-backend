@@ -1,4 +1,4 @@
-package com.sipc.intelligentfarmbackend.service.gateway;
+package com.sipc.intelligentfarmbackend.service;
 
 
 import org.springframework.integration.annotation.MessagingGateway;
@@ -6,7 +6,7 @@ import org.springframework.integration.mqtt.support.MqttHeaders;
 import org.springframework.messaging.handler.annotation.Header;
 
 @MessagingGateway(defaultRequestChannel = "mqttOutboundChannel")
-public interface MqttGateway {
+public interface MqttSendService {
 
     // 发送消息到MQTT
     public abstract void sendMsgToMqtt(
