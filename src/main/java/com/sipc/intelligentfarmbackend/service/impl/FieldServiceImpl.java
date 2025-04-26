@@ -21,6 +21,12 @@ public class FieldServiceImpl implements FieldService {
         return fieldMapper.findAll();
     }
 
+    // 根据id查询ById
+    @Override
+    public List<Field> getById(Integer id) {
+        return fieldMapper.getById(id);
+    }
+
     // 添加地块
     @Override
     public void add(Field field) {

@@ -16,7 +16,7 @@ public class PlantLogServiceImpl implements PlantLogService {
 
     // 根据田地id查询
     @Override
-    public PlantLog getByFieldId(Integer fieldId) {
+    public List<PlantLog> getByFieldId(Integer fieldId) {
         return plantLogMapper.getByFieldId(fieldId);
     }
 

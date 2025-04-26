@@ -6,11 +6,21 @@
 
 <!--    根据fieldId查询种植记录-->
     <select id="getByFieldId" resultType="com.sipc.intelligentfarmbackend.pojo.PlantLog">
-        select p.*, f.field_name, u.name
-        from plant_log p
-        join field f on p.field_id = f.id
-        join user u on p.user_id = u.id
-        where p.field_id = #{fieldId}
+<!--        select p.*, f.field_name, u.name-->
+<!--        from plant_log p-->
+<!--        join field f on p.field_id = f.id-->
+<!--        join user u on p.user_id = u.id-->
+<!--        where p.field_id = #{fieldId}-->
+        SELECT
+        p.*,
+        f.field_name AS fieldName,  <!-- 明确别名 -->
+        u.user_name AS userName,     <!-- 确保别名与实体类字段名一致 -->
+        u.user_phone
+        FROM plant_log p
+        JOIN field f ON f.id = p.field_id
+        JOIN user u ON u.id = p.user_id
+        WHERE p.field_id = #{fieldId}
+        ORDER BY p.log_time DESC  <!-- 添加排序 -->
     </select>
 
 

@@ -16,10 +16,13 @@ public class MqttSendController {
     private MqttSendService mqttSendService;
 
     // 固定主题和消息内容
-    private static final String FIXED_TOPIC = "atguigu/iot/lamp/line";
-    private static final String FIXED_MESSAGE = "1";
+//    private static final String FIXED_TOPIC = "atguigu/iot/lamp/line";
 
-    @PostMapping("/sendFixedMsgToMqtt")
+    private static final String FIXED_TOPIC = "/mysmartagriculture/sub";
+    private static final String FIXED_MESSAGE = "{\"dianji_sw\":1}";;
+
+
+    @PostMapping("/water")
     public void sendFixedMsg() {
         mqttSendService.sendMsgToMqtt(FIXED_TOPIC, FIXED_MESSAGE);
         log.info("已发送固定消息至MQTT: topic={}, message={}", FIXED_TOPIC, FIXED_MESSAGE);

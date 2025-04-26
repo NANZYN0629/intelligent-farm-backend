@@ -12,17 +12,20 @@ spring:
     password: 123 # 密码
     url: tcp://broker.emqx.io:1883 # 连接地址
     subClientId: sub_client_id_123 # 订阅者客户端id
-    subTopic: atguigu/iot/lamp/line # 订阅的主题
+    subTopic: /mysmartagriculture/pub # 订阅的主题
     pubClientId: pub_client_id_123 # 发布者客户端id
+
 
 #  mqtt:
 #    username: nan # 用户名
 #    password: 123 # 密码
 #    url: tcp://broker.emqx.io:1883 # 连接地址
 #    subClientId: sub_client_id_123 # 订阅者客户端id
-#    subTopic: mysmartagriculture/pub # 订阅的主题
+#    subTopic: /mysmartagriculture/pub # 订阅的主题
 #    pubClientId: pub_client_id_123 # 发布者客户端id
 
+server:
+  port: 8080
 
 
 mybatis:

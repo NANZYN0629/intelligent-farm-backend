@@ -20,5 +20,6 @@ public class PlantLog {
     private String remark; // 备注
     // 非数据库字段
     private String fieldName; // 地块名称
-    private String name; // 用户姓名
+    private String userName; // 用户姓名
+    private String userPhone; // 用户电话
 }

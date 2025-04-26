@@ -9,6 +9,9 @@ public interface FieldService {
     // 查询所有地块
     public List<Field> findAll();
 
+    // 根据id查询地块
+    public List<Field> getById(Integer id);
+
     // 增加地块
     void add(Field field);
 

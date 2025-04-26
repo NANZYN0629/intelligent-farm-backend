@@ -10,8 +10,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Slf4j
-@RequestMapping("/plantLog")
+@RequestMapping("/log")
 @RestController
 public class PlantLogController {
 
@@ -22,7 +24,7 @@ public class PlantLogController {
     @GetMapping("/{fieldId}")
     public Result getByFieldId(@PathVariable Integer fieldId) {
         log.info("查询地块id=%d的种植日志".formatted(fieldId));
-        PlantLog plantLog = plantLogService.getByFieldId(fieldId);
+        List<PlantLog> plantLog = plantLogService.getByFieldId(fieldId);
         return Result.success(plantLog);
     }
 

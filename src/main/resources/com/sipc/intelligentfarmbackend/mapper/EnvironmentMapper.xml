@@ -7,18 +7,22 @@
 
 <!--    根据fieldId查询环境信息-->
     <select id="getByFieldId" resultType="com.sipc.intelligentfarmbackend.pojo.Environment">
-        select * from environment where field_id=#{fieldId}
+        SELECT *
+        FROM environment
+        WHERE field_id = #{fieldId}
+        ORDER BY id DESC  <!-- 按时间或ID倒序取最新的一条 -->
+        LIMIT 1
     </select>
 
 
     <insert id="insertEnvironment" parameterType="com.sipc.intelligentfarmbackend.pojo.Environment">
-        INSERT INTO environment(
-        field_id, nitrogen, potassium, moisture,
-        light, phosphorus, temperature, ph, co2
-        ) VALUES (
-        #{fieldId}, #{nitrogen}, #{potassium}, #{moisture},
-        #{light}, #{phosphorus}, #{temperature}, #{ph}, #{co2}
-        )
+    INSERT INTO environment(
+    field_id, nitrogen, potassium, moisture,
+    light, phosphorus, temperature, ph, co2
+    ) VALUES (
+    #{fieldId}, #{nitrogen}, #{potassium}, #{moisture},
+    #{light}, #{phosphorus}, #{temperature}, #{ph}, #{co2}
+    )
     </insert>
 
 </mapper>

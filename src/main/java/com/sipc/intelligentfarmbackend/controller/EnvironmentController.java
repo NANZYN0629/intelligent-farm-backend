@@ -21,8 +21,8 @@ public class EnvironmentController {
 
 
     // 根据fieldId 查询环境信息
-    @GetMapping
-    public Result getByFieldId(Integer fieldId) {
+    @GetMapping("/{fieldId}")
+    public Result getByFieldId(@PathVariable Integer fieldId) {
            log.info("查询环境信息，fieldId={}", fieldId);
         Environment environment = environmentService.getByFieldId(fieldId);
         return Result.success(environment);

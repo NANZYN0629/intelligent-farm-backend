@@ -12,9 +12,11 @@ import java.util.List;
 public interface FieldMapper {
 
     //查询所有地块
-    @Select("select * from field")
+    @Select("select field.id, field.field_name, field.crop_name, field.crop,field.area,field.plant_time from field")
     public List<Field> findAll();
 
+    @Select("select * from field where id=#{id}")
+    List<Field> getById(Integer id);
     //添加地块
     @Insert("insert into field(field_name,location,area,crop_name,crop,plant_time) values(#{fieldName},#{location},#{area},#{cropName},#{crop},#{plantTime})")
     void insert(Field field);
@@ -22,4 +24,6 @@ public interface FieldMapper {
     // 根据id删除地块
     @Delete("delete from field where id=#{id}")
     void deleteById(Integer id);
+
+
 }

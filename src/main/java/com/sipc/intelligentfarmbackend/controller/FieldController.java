@@ -28,6 +28,14 @@ public class FieldController {
         return Result.success(fieldlist);
     }
 
+    // 根据id查询地块
+    @GetMapping("/{id}")
+    public Result getById(@PathVariable Integer id) {
+        log.info("查询地块，id=" + id);
+        List<Field> field = fieldService.getById(id);
+        return Result.success(field);
+    }
+
     // 增加地块
     @PostMapping
     public Result add(@RequestBody Field field) {
