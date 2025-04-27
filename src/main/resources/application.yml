@@ -1,3 +1,7 @@
+server:
+  port: 8080
+
+
 spring:
   application:
     name: intelligent-farm-backend
@@ -15,7 +19,8 @@ spring:
     subTopic: /mysmartagriculture/pub # 订阅的主题
     pubClientId: pub_client_id_123 # 发布者客户端id
 
-
+#  server:
+#    port: 8081
 #  mqtt:
 #    username: nan # 用户名
 #    password: 123 # 密码
@@ -24,8 +29,7 @@ spring:
 #    subTopic: /mysmartagriculture/pub # 订阅的主题
 #    pubClientId: pub_client_id_123 # 发布者客户端id
 
-server:
-  port: 8080
+
 
 
 mybatis:

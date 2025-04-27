@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sipc.intelligentfarmbackend.mapper.NoticeMapper">
+    <select id="getByFieldId" resultType="com.sipc.intelligentfarmbackend.pojo.Notice">
+        SELECT * FROM notice WHERE field_id=#{fieldId}
+    </select>
+
+</mapper>
