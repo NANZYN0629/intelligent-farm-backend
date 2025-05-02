@@ -14,7 +14,7 @@
 <!--添加传感器-->
     <insert id="insert">
         insert into sensor(field_id, status, sensor_name)
-        values(#{fieldId}，#{status},#{sensorName})
+        values(#{fieldId}, #{status}, #{sensorName})
     </insert>
 
 
