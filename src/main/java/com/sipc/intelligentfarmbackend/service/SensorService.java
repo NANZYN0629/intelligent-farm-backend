@@ -2,8 +2,10 @@ package com.sipc.intelligentfarmbackend.service;
 
 import com.sipc.intelligentfarmbackend.pojo.Sensor;
 
+import java.util.List;
+
 public interface SensorService {
-    Sensor getByFieldId(Integer fieldId);
+    List<Sensor> getByFieldId(Integer fieldId);
 
     // 新增传感器
     void add(Sensor sensor);

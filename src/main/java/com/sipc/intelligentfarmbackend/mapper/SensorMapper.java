@@ -4,12 +4,14 @@ import com.sipc.intelligentfarmbackend.pojo.Sensor;
 import org.apache.ibatis.annotations.*;
 import org.springframework.web.bind.annotation.PutMapping;
 
+import java.util.List;
+
 @Mapper
 public interface SensorMapper {
 
     // 通过fieldId查询传感器
 //    @Select("select * from sensor where field_id=#{fieldId}")
-    Sensor getByFieldId(Integer fieldId);
+    List<Sensor> getByFieldId(@Param("fieldId") Integer fieldId);
 
     // 添加传感器
 //    @Insert("insert into sensor(field_id, status, sensor_name) values(#{fieldId},#{status},#{sensor_name})")

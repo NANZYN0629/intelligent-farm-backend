@@ -6,6 +6,8 @@ import com.sipc.intelligentfarmbackend.service.SensorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class SensorServiceImpl implements SensorService {
     @Autowired
@@ -14,7 +16,7 @@ public class SensorServiceImpl implements SensorService {
 
     // 通过fieldId获取传感器信息
     @Override
-    public Sensor getByFieldId(Integer fieldId) {
+    public List<Sensor> getByFieldId(Integer fieldId) {
         return sensorMapper.getByFieldId(fieldId);
     }
 

@@ -9,6 +9,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 @Slf4j
 @RequestMapping("/sensor")
@@ -23,7 +25,7 @@ public class SensorController {
     @GetMapping("/{fieldId}")
     public Result getByFieldId(@PathVariable Integer fieldId) {
         log.info("查询地块的传感器信息"+fieldId);
-        Sensor sensor = sensorService.getByFieldId(fieldId);
+        List<Sensor> sensor = sensorService.getByFieldId(fieldId);
         return Result.success(sensor);
     }
 
