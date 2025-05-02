@@ -1,10 +1,7 @@
 package com.sipc.intelligentfarmbackend.mapper;
 
 import com.sipc.intelligentfarmbackend.pojo.Field;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -25,5 +22,8 @@ public interface FieldMapper {
     @Delete("delete from field where id=#{id}")
     void deleteById(Integer id);
 
+    // 根据id修改地块信息
+    @Update("update field set area=#{area},crop_name=#{cropName},crop=#{crop},plant_time=#{plantTime} where id=#{id}")
+    void update(Field field);
 
 }

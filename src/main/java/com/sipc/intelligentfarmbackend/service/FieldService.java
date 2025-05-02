@@ -17,4 +17,7 @@ public interface FieldService {
 
     // 根据id删除地块
     void deleteById(Integer id);
+
+    // 根据id修改地块信息
+    void update(Field field);
 }

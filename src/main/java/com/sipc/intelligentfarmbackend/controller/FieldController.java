@@ -52,4 +52,12 @@ public class FieldController {
         return Result.success();
     }
 
+    // 根据id修改地块信息
+    @PutMapping
+    public Result update(@RequestBody Field field) {
+        log.info("修改地块信息" + field);
+        fieldService.update(field);
+        return Result.success();
+    }
+
 }

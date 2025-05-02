@@ -39,5 +39,11 @@ public class FieldServiceImpl implements FieldService {
         fieldMapper.deleteById(id);
     }
 
+    // 根据id修改地块信息
+    @Override
+    public void update(Field field) {
+        fieldMapper.update(field);
+    }
+
 
 }
