@@ -12,13 +12,10 @@
 <!--        join user u on p.user_id = u.id-->
 <!--        where p.field_id = #{fieldId}-->
         SELECT
-        p.*,
-        f.field_name AS fieldName,  <!-- 明确别名 -->
-        u.user_name AS userName,     <!-- 确保别名与实体类字段名一致 -->
-        u.user_phone
+            p.*,
+            f.field_name AS fieldName  <!-- 明确别名 -->
         FROM plant_log p
         JOIN field f ON f.id = p.field_id
-        JOIN user u ON u.id = p.user_id
         WHERE p.field_id = #{fieldId}
         ORDER BY p.log_time DESC  <!-- 添加排序 -->
     </select>
