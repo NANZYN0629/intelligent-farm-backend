@@ -10,15 +10,12 @@ import org.springframework.integration.annotation.ServiceActivator;
 import org.springframework.integration.core.MessageProducer;
 import org.springframework.integration.mqtt.core.MqttPahoClientFactory;
 import org.springframework.integration.mqtt.support.DefaultPahoMessageConverter;
-import org.springframework.integration.mqtt.support.MqttMessageConverter;
 import org.springframework.messaging.MessageChannel;
 import org.springframework.integration.channel.DirectChannel;
 import org.springframework.integration.mqtt.inbound.MqttPahoMessageDrivenChannelAdapter;
-import org.springframework.stereotype.Service;
 
 
 // MQTT 订阅主题及发送信息
-
 @Configuration
 public class MqttInboundConfiguration {
 

@@ -26,9 +26,10 @@
 
 <!--    添加种植记录-->
     <insert id="insert">
-        insert into plant_log(field_id, user_id, log_time, work, remark)
-        values(#{fieldId}, #{userId}, #{logTime}, #{work}, #{remark})
+        insert into plant_log(field_id, user_name, user_phone, log_time, work, remark)
+        values(#{fieldId}, #{userName}, #{userPhone}, #{logTime}, #{work}, #{remark})
     </insert>
+
 
 
 </mapper>

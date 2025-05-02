@@ -29,7 +29,7 @@ public class MqttConfiguration {
         options.setServerURIs(new String[] {mqttConfigurationProperties.getUrl() } );   // 设置服务器地址
 
         // MqttConfiguration.java
-        options.setKeepAliveInterval(60);
+        options.setKeepAliveInterval(30);
         options.setAutomaticReconnect(true); // 自动重连
         options.setConnectionTimeout(30); // 连接超时30秒
 

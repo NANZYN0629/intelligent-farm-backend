@@ -31,7 +31,7 @@ public class PlantLogController {
     // 添加种植日志
     @PostMapping
     public Result add(@RequestBody PlantLog plantLog) {
-        log.info("添加种植日志");
+        log.info("添加种植日志，接收参数: {}", plantLog);
         plantLogService.add(plantLog);
         return Result.success();
     }
