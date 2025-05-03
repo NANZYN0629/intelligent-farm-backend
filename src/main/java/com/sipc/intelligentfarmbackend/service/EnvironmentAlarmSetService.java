@@ -15,4 +15,5 @@ public interface EnvironmentAlarmSetService {
     // 删除指定田地的所有环境报警设置
     void deleteByFieldId(Integer fieldId);
 
+    void update(EnvironmentAlarmSet environmentAlarmSet);
 }

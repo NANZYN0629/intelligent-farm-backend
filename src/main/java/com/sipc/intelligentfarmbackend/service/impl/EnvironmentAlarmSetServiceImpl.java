@@ -32,4 +32,9 @@ public class EnvironmentAlarmSetServiceImpl implements EnvironmentAlarmSetServic
         environmentAlarmSetMapper.deleteByFieldId(fieldId);
     }
 
+    @Override
+    public void update(EnvironmentAlarmSet environmentAlarmSet) {
+        environmentAlarmSetMapper.update(environmentAlarmSet);
+    }
+
 }

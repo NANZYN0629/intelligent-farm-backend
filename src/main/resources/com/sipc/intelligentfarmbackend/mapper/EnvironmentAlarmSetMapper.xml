@@ -21,6 +21,14 @@
         DELETE FROM environment_alarm_set WHERE field_id = #{fieldId}
     </delete>
 
+<!--    更新EnvironmentAlarmSet-->
+    <update id="update" >
+        UPDATE environment_alarm_set
+        SET program = #{program}, max = #{max}, min = #{min}
+        WHERE id = #{id}
+    </update>
+
+
 </mapper>
 
 

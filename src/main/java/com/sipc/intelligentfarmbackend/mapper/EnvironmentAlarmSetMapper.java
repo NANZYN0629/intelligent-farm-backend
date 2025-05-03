@@ -16,4 +16,6 @@ public interface EnvironmentAlarmSetMapper {
 
     // 增加EnvironmentAlarmSet
     void insert(EnvironmentAlarmSet environmentAlarmSet);
+
+    void update(EnvironmentAlarmSet environmentAlarmSet);
 }

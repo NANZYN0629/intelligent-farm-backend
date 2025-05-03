@@ -29,10 +29,20 @@ public class EnvironmentAlarmSetController {
         return Result.success(environmentAlarmSet);
     }
 
+    // 插入环境报警设置
     @PostMapping
     public Result insert(@RequestBody EnvironmentAlarmSet environmentAlarmSet) {
         log.info("插入环境报警设置，environmentAlarmSet={}", environmentAlarmSet);
         environmentAlarmSetService.insert(environmentAlarmSet);
+        return Result.success();
+    }
+
+
+    // 更新环境报警设置
+    @PutMapping
+    public Result update(@RequestBody EnvironmentAlarmSet environmentAlarmSet) {
+        log.info("更新环境报警设置，environmentAlarmSet={}", environmentAlarmSet);
+        environmentAlarmSetService.update(environmentAlarmSet);
         return Result.success();
     }
 
