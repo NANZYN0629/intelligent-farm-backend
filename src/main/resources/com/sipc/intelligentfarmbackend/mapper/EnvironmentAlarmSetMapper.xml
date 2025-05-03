@@ -16,7 +16,10 @@
         VALUES (#{fieldId}, #{program}, #{max}, #{min})
     </insert>
 
-
+    <!-- 根据fieldId删除EnvironmentAlarmSet -->
+    <delete id="deleteByFieldId">
+        DELETE FROM environment_alarm_set WHERE field_id = #{fieldId}
+    </delete>
 
 </mapper>
 

@@ -12,5 +12,7 @@ public interface EnvironmentAlarmSetService {
     // 添加环境报警设置
     void insert(EnvironmentAlarmSet environmentAlarmSet);
 
+    // 删除指定田地的所有环境报警设置
+    void deleteByFieldId(Integer fieldId);
 
 }

@@ -11,6 +11,9 @@ public interface EnvironmentAlarmSetMapper {
     // 根据fieldId查询EnvironmentAlarmSet
     List<EnvironmentAlarmSet> getByFieldId(Integer fieldId);
 
+    // 根据fieldId删除EnvironmentAlarmSet
+    void deleteByFieldId(Integer fieldId);
+
     // 增加EnvironmentAlarmSet
     void insert(EnvironmentAlarmSet environmentAlarmSet);
 }

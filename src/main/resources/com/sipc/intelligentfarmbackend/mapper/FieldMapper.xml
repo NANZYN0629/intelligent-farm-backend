@@ -21,7 +21,7 @@
     </select>
 
 <!--    添加地块-->
-    <insert id="insert">
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
         insert into field(field_name,location,area,crop_name,crop,plant_time)
         values(#{fieldName},#{location},#{area},#{cropName},#{crop},#{plantTime})
     </insert>

@@ -13,7 +13,7 @@ public interface FieldService {
     public List<Field> getById(Integer id);
 
     // 增加地块
-    void add(Field field);
+    Field add(Field field);
 
     // 根据id删除地块
     void deleteById(Integer id);

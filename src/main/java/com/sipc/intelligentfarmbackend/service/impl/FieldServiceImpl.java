@@ -3,6 +3,7 @@ package com.sipc.intelligentfarmbackend.service.impl;
 import com.sipc.intelligentfarmbackend.mapper.FieldMapper;
 import com.sipc.intelligentfarmbackend.pojo.Field;
 import com.sipc.intelligentfarmbackend.service.FieldService;
+import com.sipc.intelligentfarmbackend.service.EnvironmentAlarmSetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,8 @@ public class FieldServiceImpl implements FieldService {
     @Autowired
     private FieldMapper fieldMapper;
 
+    @Autowired
+    private EnvironmentAlarmSetService environmentAlarmSetService;
 
     // 查询所有地块
     @Override
@@ -29,13 +32,18 @@ public class FieldServiceImpl implements FieldService {
 
     // 添加地块
     @Override
-    public void add(Field field) {
+    public Field add(Field field) {
+        // 插入地块并回填主键 id
         fieldMapper.insert(field);
+        return field;
     }
 
     // 根据id删除ById
     @Override
     public void deleteById(Integer id) {
+        // 先删除相关的环境报警设置
+        environmentAlarmSetService.deleteByFieldId(id);
+        // 再删除地块
         fieldMapper.deleteById(id);
     }
 
@@ -44,6 +52,4 @@ public class FieldServiceImpl implements FieldService {
     public void update(Field field) {
         fieldMapper.update(field);
     }
-
-
 }
