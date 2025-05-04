@@ -35,6 +35,13 @@ public class DiseaseServiceImpl implements DiseaseService {
     }
 
 
+    // 批量删除
+    @Override
+    public void delete(List<Integer> ids) {
+        diseaseMapper.delete(ids);
+    }
+
+
 
 
 

@@ -14,4 +14,5 @@ public interface DiseaseMapper {
     List<Disease> list(DiseaseQueryParam diseaseQueryParam);
 
 
+    void delete(List<Integer> ids);
 }
