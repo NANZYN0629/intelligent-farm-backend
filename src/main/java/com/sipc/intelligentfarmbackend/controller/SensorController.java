@@ -39,8 +39,8 @@ public class SensorController {
     }
 
     // 根据id删除传感器信息
-    @DeleteMapping
-    public Result delete(Integer id) {
+    @DeleteMapping("/{id}")
+    public Result delete(@PathVariable Integer id) {
         log.info("删除传感器信息，id="+id);
         sensorService.deleteById(id);
         return Result.success();
