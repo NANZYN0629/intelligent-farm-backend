@@ -20,10 +20,10 @@ public class EnvironmentAlarmQueryParam {
     private String program;     // 报警项目
     private String outlier;     // 异常值
     private String normal;      // 正常值
-    private String currentState;    // 当前状态
+    private String currentStatus;    // 当前状态
 
     private String fieldName;   // 地块名称
-    private String cornName;    // 作物名称
+    private String corpName;    // 作物名称
 
 
 

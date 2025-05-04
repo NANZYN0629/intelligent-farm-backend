@@ -17,9 +17,9 @@ public class EnvironmentAlarm {
     private String program;     // 报警项目
     private String outlier;     // 异常值
     private String normal;      // 正常值
-    private String currentState;    // 当前状态
+    private String currentStatus;    // 当前状态
 
     private String fieldName;
-    private String cornName;
+    private String corpName;
 
 }
