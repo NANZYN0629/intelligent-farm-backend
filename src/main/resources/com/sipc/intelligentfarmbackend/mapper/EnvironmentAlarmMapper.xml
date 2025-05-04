@@ -6,7 +6,7 @@
 
 <!--    // 分页-->
     <select id="list" resultType="com.sipc.intelligentfarmbackend.pojo.EnvironmentAlarm">
-        SELECT e.id, e.fieldName, e.corpName, e.alarmTime, e.program, e.outlier, e.normal, e.currentStatus
+        SELECT e.id, f.field_name AS fieldName, f.crop_name AS corpName, e.alarm_time AS alarmTime, e.program, e.outlier, e.normal, e.current_status AS currentStatus
         FROM environment_alarm e
         JOIN field f ON f.id = e.field_id
         <where>
