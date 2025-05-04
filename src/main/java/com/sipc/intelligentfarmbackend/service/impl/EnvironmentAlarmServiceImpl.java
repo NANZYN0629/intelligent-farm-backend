@@ -39,6 +39,10 @@ public class EnvironmentAlarmServiceImpl implements EnvironmentAlarmService {
     }
 
 
-
+    // 删除警报
+    @Override
+    public void delete(List<Integer> ids) {
+        environmentAlarmMapper.delete(ids);
+    }
 
 }

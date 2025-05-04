@@ -4,7 +4,6 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sipc.intelligentfarmbackend.mapper.EnvironmentAlarmMapper">
 
-<!--    // 分页-->
     <select id="list" resultType="com.sipc.intelligentfarmbackend.pojo.EnvironmentAlarm">
         SELECT e.id, f.field_name AS fieldName, f.crop_name AS corpName, e.alarm_time AS alarmTime, e.program, e.outlier, e.normal, e.current_status AS currentStatus
         FROM environment_alarm e
@@ -21,5 +20,15 @@
             </if>
         </where>
     </select>
+
+<!--    // 删除-->
+    <delete id="delete">
+        DELETE FROM environment_alarm WHERE id IN
+        <foreach collection="ids" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+
 
 </mapper>

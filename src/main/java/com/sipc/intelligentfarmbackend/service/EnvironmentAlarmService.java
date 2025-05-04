@@ -8,9 +8,8 @@ import java.util.List;
 
 public interface EnvironmentAlarmService {
 
-//    // 获取所有环境报警信息
-//    List<EnvironmentAlarm> findAll();
-
-
     PageResult<EnvironmentAlarm> page(EnvironmentAlarmQueryParam environmentAlarmQueryParam);
+
+    void delete(List<Integer> id);
+
 }
