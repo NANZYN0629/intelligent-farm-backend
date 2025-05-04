@@ -16,9 +16,14 @@
                 and u.name like concat('%', #{name}, '%')
             </if>
             <if test="userPhone != null and userPhone != ''">
-                andu.user_phone like concat('%', #{userPhone}, '%)
+                and u.user_phone like concat('%', #{userPhone}, '%')
             </if>
         </where>
+    </select>
+
+<!--    获取用户名和密码-->
+    <select id="getUsernameAndPassword" resultType="com.sipc.intelligentfarmbackend.pojo.User">
+        select * from user where user_name = #{userName} and password = #{password}
     </select>
 
 </mapper>

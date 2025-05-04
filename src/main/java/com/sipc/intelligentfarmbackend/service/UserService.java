@@ -12,4 +12,10 @@ public interface UserService {
 
     //分页查询
     PageResult<User> page(UserQueryParam userQueryParam);
+
+    // 获取用户名和密码
+    User getUsernameAndPassword(User user);
+
+    // 登录
+    LoginInfo login(User user);
 }
