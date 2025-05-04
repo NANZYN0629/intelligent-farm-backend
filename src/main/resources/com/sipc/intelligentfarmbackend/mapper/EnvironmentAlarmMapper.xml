@@ -14,7 +14,7 @@
     <select id="list" resultType="com.sipc.intelligentfarmbackend.pojo.EnvironmentAlarm">
         SELECT e.id, e.fieldName, e.cornName, e.alarmTime, e.program, e.outlier, e.normal, e.currentState
         FROM environment_alarm e
-        JOIN field f ON f.id = environment_alarm.field_id
+        JOIN field f ON f.id = environment_alarm.fieldId
         <where>
             <if test="id != null">
                 AND id = #{id}
