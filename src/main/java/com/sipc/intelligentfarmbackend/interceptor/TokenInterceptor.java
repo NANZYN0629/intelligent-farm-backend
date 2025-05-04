@@ -32,7 +32,7 @@ public class TokenInterceptor implements HandlerInterceptor {
         }
 
         // 3. 获取请求头中的token
-        String token = request.getHeader("token");
+        String token = request.getHeader("Authorization");
 
         // 4. 判断token是否为空,如果为空，则返回错误信息
         if(!StringUtils.hasLength(token)){

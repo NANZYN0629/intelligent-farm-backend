@@ -15,6 +15,7 @@ public class CorsConfig implements WebMvcConfigurer {
                 .allowedMethods("*")    // 允许所有HTTP方法（GET/POST等）
                 .allowedHeaders("*", "Authorization")    // 允许所有请求头
                 .allowCredentials(true)     // 允许携带cookie等凭证
+                .exposedHeaders("Authorization")
                 .maxAge(3600);      // 预检请求缓存1小时
     }
 }
