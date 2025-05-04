@@ -1,5 +1,7 @@
 package com.sipc.intelligentfarmbackend.JavaToPython;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -7,53 +9,91 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+@Slf4j
 public class HttpUrlconnection {
-    //发送JSON字符串 如果成功则返回成功标识。
-    public static String doJsonPost(String urlPath, String Json) {
-        // HttpClient 6.0被抛弃了
+
+//    /**
+//     * 发送JSON字符串到指定的URL，并返回服务器的响应。
+//     *
+//     * @param urlPath 请求的URL路径
+//     * @param json 要发送的JSON字符串
+//     * @return 服务器返回的响应字符串，如果请求失败则返回空字符串
+//     */
+    public static String doJsonPost(String urlPath, String json) {
         String result = "";
-        BufferedReader reader = null;
+        HttpURLConnection conn = null;
         try {
             URL url = new URL(urlPath);
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setRequestMethod("POST");
-            conn.setDoOutput(true);
-            conn.setDoInput(true);
-            conn.setUseCaches(false);
-            conn.setRequestProperty("Connection", "Keep-Alive");
-            conn.setRequestProperty("Charset", "UTF-8");
-            // 设置文件类型:
-            conn.setRequestProperty("Content-Type","application/json; charset=UTF-8");
-            // 设置接收类型否则返回415错误
-            //conn.setRequestProperty("accept","*/*")此处为暴力方法设置接受所有类型，以此来防范返回415;
-            conn.setRequestProperty("accept","application/json");
-            // 往服务器里面发送数据
-            if (Json != null && !Json.isEmpty()) {
-                byte[] writebytes = Json.getBytes();
-                // 设置文件长度
-                conn.setRequestProperty("Content-Length", String.valueOf(writebytes.length));
-                OutputStream outwritestream = conn.getOutputStream();
-                outwritestream.write(Json.getBytes());
-                outwritestream.flush();
-                outwritestream.close();
-                System.out.println("doJsonPost: conn" + conn.getResponseCode());
-            }
+            conn = (HttpURLConnection) url.openConnection();
+            configureConnection(conn);
+            sendJsonData(conn, json);
             if (conn.getResponseCode() == 200) {
-                reader = new BufferedReader(
-                        new InputStreamReader(conn.getInputStream()));
-                result = reader.readLine();
+                result = readResponse(conn);
+            } else {
+                log.error("HTTP request failed with response code: {}", conn.getResponseCode());
             }
+        } catch (IOException e) {
+            log.error("IO error during JSON POST request to URL: {}", urlPath, e);
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("Unexpected error during JSON POST request to URL: {}", urlPath, e);
         } finally {
-            if (reader != null) {
-                try {
-                    reader.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+            if (conn != null) {
+                conn.disconnect();
             }
         }
         return result;
+    }
+
+//    /**
+//      配置HTTP连接的属性。
+//
+//      @param conn 要配置的HttpURLConnection对象
+//      @throws IOException 如果配置过程中发生IO错误
+//     **/
+    private static void configureConnection(HttpURLConnection conn) throws IOException {
+        conn.setRequestMethod("POST");
+        conn.setDoOutput(true);
+        conn.setDoInput(true);
+        conn.setUseCaches(false);
+        conn.setRequestProperty("Connection", "Keep-Alive");
+        conn.setRequestProperty("Charset", "UTF-8");
+        conn.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
+        conn.setRequestProperty("accept", "application/json");
+    }
+
+//    /**
+//     * 发送JSON数据到服务器。
+//     *
+//     * @param conn 已配置的HttpURLConnection对象
+//     * @param json 要发送的JSON字符串
+//     * @throws IOException 如果发送过程中发生IO错误
+//     */
+    private static void sendJsonData(HttpURLConnection conn, String json) throws IOException {
+        if (json != null && !json.isEmpty()) {
+            byte[] writeBytes = json.getBytes();
+            conn.setRequestProperty("Content-Length", String.valueOf(writeBytes.length));
+            try (OutputStream outStream = conn.getOutputStream()) {
+                outStream.write(writeBytes);
+                outStream.flush();
+            }
+        }
+    }
+
+//    /**
+//     * 读取服务器的响应。
+//     *
+//     * @param conn 已连接的HttpURLConnection对象
+//     * @return 服务器返回的响应字符串
+//     * @throws IOException 如果读取过程中发生IO错误
+//     */
+    private static String readResponse(HttpURLConnection conn) throws IOException {
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()))) {
+            StringBuilder response = new StringBuilder();
+            String line;
+            while ((line = reader.readLine()) != null) {
+                response.append(line);
+            }
+            return response.toString();
+        }
     }
 }
