@@ -27,11 +27,13 @@ public class EnvironmentAlarmSetServiceImpl implements EnvironmentAlarmSetServic
         environmentAlarmSetMapper.insert(environmentAlarmSet);
     }
 
+    // 根据fieldId删除环境报警设置
     @Override
     public void deleteByFieldId(Integer fieldId) {
         environmentAlarmSetMapper.deleteByFieldId(fieldId);
     }
 
+    // 更新环境报警设置
     @Override
     public void update(EnvironmentAlarmSet environmentAlarmSet) {
         environmentAlarmSetMapper.update(environmentAlarmSet);
