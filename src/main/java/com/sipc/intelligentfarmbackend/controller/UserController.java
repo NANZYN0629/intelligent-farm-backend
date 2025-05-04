@@ -8,14 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @Slf4j
-@RequestMapping("/user")
+@RequestMapping
 @RestController
 public class UserController {
     @Autowired
     private UserService userService;
 
     // 用户列表分页查询
-    @GetMapping
+    @GetMapping("/user")
     public Result page(UserQueryParam userQueryParam){
         log.info("用户列表分页查询:{}",userQueryParam);
         PageResult<User> pageResult = userService.page(userQueryParam);
