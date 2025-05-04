@@ -22,6 +22,9 @@ public class EnvironmentAlarmQueryParam {
     private String normal;      // 正常值
     private String currentState;    // 当前状态
 
+    private String fieldName;   // 地块名称
+    private String cornName;    // 作物名称
+
 
 
 }
