@@ -4,26 +4,20 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sipc.intelligentfarmbackend.mapper.EnvironmentAlarmMapper">
 
-<!--&lt;!&ndash;    获取所有环境报警设置&ndash;&gt;-->
-<!--    <select id="findAll" resultType="com.sipc.intelligentfarmbackend.pojo.EnvironmentAlarm">-->
-<!--        SELECT * FROM environment_alarm_set-->
-<!--    </select>-->
-
-
 <!--    // 分页-->
     <select id="list" resultType="com.sipc.intelligentfarmbackend.pojo.EnvironmentAlarm">
         SELECT e.id, e.fieldName, e.cornName, e.alarmTime, e.program, e.outlier, e.normal, e.currentState
         FROM environment_alarm e
-        JOIN field f ON f.id = environment_alarm.fieldId
+        JOIN field f ON f.id = e.fieldId
         <where>
             <if test="id != null">
-                AND id = #{id}
+                AND e.id = #{id}
             </if>
             <if test="fieldId != null">
-                AND field_id = #{fieldId}
+                AND e.field_id = #{fieldId}
             </if>
             <if test="alarmTime != null">
-                AND alarm_time = #{alarmTime}
+                AND e.alarm_time = #{alarmTime}
             </if>
         </where>
     </select>
