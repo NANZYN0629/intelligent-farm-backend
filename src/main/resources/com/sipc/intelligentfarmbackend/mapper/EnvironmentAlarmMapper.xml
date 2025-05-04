@@ -12,7 +12,7 @@
 
 <!--    // 分页-->
     <select id="list" resultType="com.sipc.intelligentfarmbackend.pojo.EnvironmentAlarm">
-        SELECT *, f.field_name AS fieldName, f.crop_name AS cropName FROM environment_alarm
+        SELECT e.id, e.fieldName, e.cornName, e.alarmTime, e.program, e.outlier, e.normal, e.currentState FROM environment_alarm e
         JOIN field f ON f.id = environment_alarm.field_id
         <where>
             <if test="id != null">
