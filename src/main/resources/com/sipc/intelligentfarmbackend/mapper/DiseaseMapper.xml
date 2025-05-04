@@ -6,7 +6,7 @@
 
     <!--    分页查询-->
     <select id="list" resultType="com.sipc.intelligentfarmbackend.pojo.Disease">
-        SELECT d.id, f.field_name AS fieldName, f.crop_name AS corpName, d.alarmTime, d.status, d.diseaseName, d.diseaseImg  FROM disease d
+        SELECT *, f.field_name AS fieldName, f.crop_name AS corpName FROM disease d
         JOIN field f ON d.field_id = f.id
         <where>
             <if test="id != null">

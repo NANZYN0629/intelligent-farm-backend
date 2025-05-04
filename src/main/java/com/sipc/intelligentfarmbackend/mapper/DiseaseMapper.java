@@ -12,4 +12,6 @@ public interface DiseaseMapper {
 
 
     List<Disease> list(DiseaseQueryParam diseaseQueryParam);
+
+
 }
