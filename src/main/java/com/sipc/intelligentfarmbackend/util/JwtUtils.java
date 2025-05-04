@@ -1,38 +1,43 @@
 package com.sipc.intelligentfarmbackend.util;
 
-
-
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
-
+import io.jsonwebtoken.security.SecurityException;
 import javax.crypto.SecretKey;
 import java.util.Date;
 import java.util.Map;
 
 public class JwtUtils {
+
+    // 安全密钥生成方式（推荐）
     private static final SecretKey SECRET_KEY = Keys.secretKeyFor(SignatureAlgorithm.HS256);
 
-    // 生成JWT令牌
-    public static String genJwt(Map<String, Object> claims) {
-        String  jwt = Jwts.builder()
-                .addClaims(claims)
-                .signWith(SignatureAlgorithm.HS256, SECRET_KEY)
-                .setExpiration(new Date(System.currentTimeMillis() + expire))
-                .compact();
+    // 或使用自定义密钥（需确保是32字节以上）
+    // private static final String CUSTOM_KEY_STR = "aXRjYXN0aXRjYXN0aXRjYXN0aXRjYXN0";
+    // private static final SecretKey SECRET_KEY = Keys.hmacShaKeyFor(CUSTOM_KEY_STR.getBytes());
 
-        return jwt;
+    // 生成JWT（有效期12小时）
+    public static String genJwt(Map<String, Object> claims) {
+        return Jwts.builder()
+                .claims(claims)
+                .signWith(SECRET_KEY)
+                .compact();
     }
 
-    // 解析JWT令牌
-
+    // 解析JWT
     public static Claims parseJwt(String jwt) {
-        Claims claims = Jwts.parser()
-                .setSigningKey(SECRET_KEY)
-                .build()
-                .parseClaimsJws(jwt)
-                .getBody();
-        return claims;
+        try {
+            return Jwts.parser()
+                    .verifyWith(SECRET_KEY)
+                    .build()
+                    .parseSignedClaims(jwt)
+                    .getPayload();
+        } catch (ExpiredJwtException e) {
+            throw new RuntimeException("JWT已过期");
+        } catch (SecurityException | MalformedJwtException e) {
+            throw new RuntimeException("无效的JWT签名");
+        } catch (Exception e) {
+            throw new RuntimeException("JWT解析失败");
+        }
     }
 }
