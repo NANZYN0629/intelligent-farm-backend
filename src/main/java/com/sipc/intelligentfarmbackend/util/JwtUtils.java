@@ -33,7 +33,7 @@ public class JwtUtils {
                     .parseSignedClaims(jwt)
                     .getPayload();
         } catch (ExpiredJwtException e) {
-            throw new RuntimeException("JWT已过期");
+            throw new RuntimeException("JWT已经过期");
         } catch (SecurityException | MalformedJwtException e) {
             throw new RuntimeException("无效的JWT签名");
         } catch (Exception e) {
