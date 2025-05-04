@@ -5,9 +5,8 @@
 <mapper namespace="com.sipc.intelligentfarmbackend.mapper.EnvironmentAlarmMapper">
 
 <!--    获取所有环境报警设置-->
-    <select id="getByFieldId" resultType="com.sipc.intelligentfarmbackend.pojo.EnvironmentAlarmSet">
+    <select id="findAll" resultType="com.sipc.intelligentfarmbackend.pojo.EnvironmentAlarm">
         SELECT * FROM environment_alarm_set
-        WHERE field_id = #{fieldId}
     </select>
 
 

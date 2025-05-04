@@ -17,7 +17,9 @@ public class EnvironmentAlarmServiceImpl implements EnvironmentAlarmService {
 
     // 获取所有警报
     @Override
-    public List<EnvironmentAlarm> getAll() {
-        return environmentAlarmMapper.findAll();
+    public List<EnvironmentAlarm> findAll() {
+        return List.of();
     }
+
+
 }
