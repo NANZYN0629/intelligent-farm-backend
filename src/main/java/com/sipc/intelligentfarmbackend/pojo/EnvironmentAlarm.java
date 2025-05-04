@@ -19,4 +19,7 @@ public class EnvironmentAlarm {
     private String normal;      // 正常值
     private String currentState;    // 当前状态
 
+    private String fieldName;
+    private String cornName;
+
 }
