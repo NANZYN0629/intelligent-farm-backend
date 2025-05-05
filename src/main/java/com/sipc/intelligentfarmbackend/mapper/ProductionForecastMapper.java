@@ -7,5 +7,6 @@ import java.util.List;
 
 @Mapper
 public interface ProductionForecastMapper {
+
     List<ProductionForecast> getByFieldId(Integer fieldId);
 }

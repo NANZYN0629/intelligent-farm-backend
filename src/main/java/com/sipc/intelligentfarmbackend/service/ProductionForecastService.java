@@ -9,4 +9,6 @@ public interface ProductionForecastService {
 
     // 按照地块id查询
     List<ProductionForecast> getByFieldId(Integer fieldId);
+
+
 }

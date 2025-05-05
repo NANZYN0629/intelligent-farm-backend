@@ -1,6 +1,7 @@
 package com.sipc.intelligentfarmbackend.controller;
 
 
+import com.sipc.intelligentfarmbackend.pojo.Result;
 import com.sipc.intelligentfarmbackend.service.ProductionForecastService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,9 +20,10 @@ public class ProductionForecastController {
 
     // 按照地块id查询
     @GetMapping("/{fieldId}")
-    public String getByFieldId(@RequestParam Integer fieldId) {
-        log.info("查询地块id={}的产量预测", fieldId);
-        return productionForecastService.getByFieldId(fieldId).toString();
+    public Result getByFieldId(@RequestParam Integer fieldId) {
+        log.info("查询地块id=%d的产量预测".formatted(fieldId));
+        return Result.success(productionForecastService.getByFieldId(fieldId));
     }
+
 
 }
