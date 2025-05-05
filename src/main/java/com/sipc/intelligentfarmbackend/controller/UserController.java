@@ -33,7 +33,7 @@ public class UserController {
     }
 
     // 注册增加用户
-    @PostMapping("/register")
+    @PostMapping("/regist")
     public Result register(@RequestBody User user) {
         log.info("用户注册: {}", user.getUserName());
         userService.add(user);
