@@ -19,8 +19,8 @@
 
 <!--    // 插入用户-->
     <insert id="add" parameterType="com.sipc.intelligentfarmbackend.pojo.User">
-        insert into user (user_name, user_phone, password)
-        values (##{userName}, #{userPhone}, #{password})
+        insert into user (name, user_name, role_id, user_phone, company, company_phone, password, img_url)
+        values (#{name}, #{userName}, #{roleId}, #{userPhone}, #{company}, #{companyPhone}, #{password}, #{imgUrl})
     </insert>
 
 <!--    用户更新，name，role,company,companyPhone,,userPhone-->
