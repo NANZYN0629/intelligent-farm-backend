@@ -31,4 +31,12 @@ public class UserController {
         return Result.success(loginInfo);
     }
 
+    // 注册增加用户
+    @PostMapping("/register")
+    public Result register(@RequestBody User user) {
+        log.info("用户注册: {}", user.getUserName());
+        userService.add(user);
+        return Result.success();
+    }
+
 }

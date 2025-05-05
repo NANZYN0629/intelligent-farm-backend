@@ -26,5 +26,11 @@
         select * from user where user_name = #{userName} and password = #{password}
     </select>
 
+
+    <insert id="add" parameterType="com.sipc.intelligentfarmbackend.pojo.User">
+        insert into user (id, name, user_name, role_id, user_phone, company, company_phone, password, img_url)
+        values (#{id}, #{name}, #{userName}, #{roleId}, #{userPhone}, #{company}, #{companyPhone}, #{password}, #{imgUrl})
+    </insert>
+
 </mapper>
 

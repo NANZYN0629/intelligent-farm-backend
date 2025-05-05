@@ -64,4 +64,11 @@ public class UserServiceImpl implements UserService {
 
     }
 
+
+    // 添加用户
+    @Override
+    public void add(User user) {
+        userMapper.insert(user);
+    }
+
 }

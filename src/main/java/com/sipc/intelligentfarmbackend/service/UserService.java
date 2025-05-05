@@ -18,4 +18,6 @@ public interface UserService {
 
     // 登录
     LoginInfo login(User user);
+
+    void add(User user);
 }

@@ -17,4 +17,5 @@ public interface UserMapper {
 
     User getUsernameAndPassword(User user);
 
+    void insert(User user);
 }
