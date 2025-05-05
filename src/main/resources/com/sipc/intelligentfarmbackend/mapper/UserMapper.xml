@@ -5,21 +5,11 @@
 
 <mapper namespace="com.sipc.intelligentfarmbackend.mapper.UserMapper">
 
-<!--    分页查询-->
-    <select id="list" resultType="com.sipc.intelligentfarmbackend.pojo.User">
-        select u.*, r.role_name
-        from user u
-        left join role r
-        on u.role_id = r.id
-        <where>
-            <if test="name != null and name != ''">
-                and u.name like concat('%', #{name}, '%')
-            </if>
-            <if test="userPhone != null and userPhone != ''">
-                and u.user_phone like concat('%', #{userPhone}, '%')
-            </if>
-        </where>
+<!--    获取用户信息-->
+    <select id="getUser" resultType="com.sipc.intelligentfarmbackend.pojo.User">
+        select * from user where id = #{id}
     </select>
+
 
 <!--    获取用户名和密码-->
     <select id="getUsernameAndPassword" resultType="com.sipc.intelligentfarmbackend.pojo.User">
@@ -27,10 +17,18 @@
     </select>
 
 
+<!--    // 插入用户-->
     <insert id="add" parameterType="com.sipc.intelligentfarmbackend.pojo.User">
         insert into user (id, name, user_name, role_id, user_phone, company, company_phone, password, img_url)
         values (#{id}, #{name}, #{userName}, #{roleId}, #{userPhone}, #{company}, #{companyPhone}, #{password}, #{imgUrl})
     </insert>
+
+<!--    用户更新，name，role,company,companyPhone,,userPhone-->
+    <update id="update" parameterType="com.sipc.intelligentfarmbackend.pojo.User">
+    update user u
+    SET u.name = #{name}, u.role_id = #{roleId}, u.company = #{company}, u.company_phone = #{companyPhone}, u.user_phone = #{userPhone}
+    where id = #{id}  <!-- 必须添加 where 条件 -->
+</update>
 
 </mapper>
 

@@ -24,18 +24,10 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserMapper userMapper;
 
-    // 列表查询用户
+    // 获取用户
     @Override
-    public PageResult<User> page(UserQueryParam userQueryParam) {
-        //1. 设置分页参数(PageHelper)
-        PageHelper.startPage(userQueryParam.getPage(), userQueryParam.getPageSize());
-
-        //2. 执行查询
-        List<User> userList = userMapper.list(userQueryParam);
-
-        //3. 解析查询结果, 并封装
-        Page<User> p = (Page<User>)userList;
-        return new PageResult<User>( p.getTotal(), p.getResult());
+    public User getUser(Integer id) {
+        return userMapper.getUser(id);
     }
 
     // 获取用户名密码
@@ -68,7 +60,13 @@ public class UserServiceImpl implements UserService {
     // 添加用户
     @Override
     public void add(User user) {
-        userMapper.insert(user);
+        userMapper.add(user);
+    }
+
+    // 修改用户
+    @Override
+    public void update(User user) {
+        userMapper.update(user);
     }
 
 }

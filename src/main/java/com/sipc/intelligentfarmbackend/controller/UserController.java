@@ -14,12 +14,13 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    // 用户列表分页查询
+
+    // 查询用户信息
     @GetMapping("/user")
-    public Result page(UserQueryParam userQueryParam){
-        log.info("用户列表分页查询:{}",userQueryParam);
-        PageResult<User> pageResult = userService.page(userQueryParam);
-        return Result.success(pageResult);
+    public Result getUser(@RequestParam Integer id) {
+        log.info("查询用户信息，id={}", id);
+        User user = userService.getUser(id);
+        return Result.success(user);
     }
 
 
@@ -36,6 +37,14 @@ public class UserController {
     public Result register(@RequestBody User user) {
         log.info("用户注册: {}", user.getUserName());
         userService.add(user);
+        return Result.success();
+    }
+
+    // 更新用户信息
+    @PutMapping("/user")
+    public Result update(@RequestBody User user) {
+        log.info("更新用户信息: {}", user.getUserName());
+        userService.update(user);
         return Result.success();
     }
 

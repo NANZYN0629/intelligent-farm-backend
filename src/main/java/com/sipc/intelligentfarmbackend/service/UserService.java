@@ -10,8 +10,8 @@ import org.springframework.stereotype.Service;
 
 public interface UserService {
 
-    //分页查询
-    PageResult<User> page(UserQueryParam userQueryParam);
+    // 获取用户
+    User getUser(Integer id);
 
     // 获取用户名和密码
     User getUsernameAndPassword(User user);
@@ -20,4 +20,8 @@ public interface UserService {
     LoginInfo login(User user);
 
     void add(User user);
+
+    void update(User user);
+
+
 }

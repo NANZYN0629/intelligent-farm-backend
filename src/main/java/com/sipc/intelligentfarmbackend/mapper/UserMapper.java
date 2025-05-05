@@ -11,11 +11,18 @@ import java.util.List;
 @Mapper
 public interface UserMapper {
 
-    // 条件查询用户列表
-//    @Select("select u.*, r.role_name from user u left join role r on u.role_id = r.id")
-    public List<User> list(UserQueryParam userQueryParam);
+    // 根据id查询用户
+    User getUser(Integer id);
 
+    // 根据用户名查询用户
     User getUsernameAndPassword(User user);
 
-    void insert(User user);
+    // 添加用户
+    void add(User user);
+
+    // 修改用户
+    void update(User user);
+
+
+
 }
